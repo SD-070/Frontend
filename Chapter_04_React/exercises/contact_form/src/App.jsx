@@ -1,35 +1,71 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from 'react';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [name, setName] = useState('');
+
+  const [formState, setFormState] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    message: '',
+  });
+
+  // const handleChange = (event) => {
+  //   const value = event.target.value;
+  //   const field = event.target.name;
+  //   setFormState((prev) => {
+  //     return { ...prev, [field]: value };
+  //   });
+  // };
+
+  const handleChange = (e) => setFormState((p) => ({ ...p, [e.target.name]: e.target.value }));
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log(formState);
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div>
+      <h1>Contact form</h1>
+
+      <form
+        style={{
+          margin: '1rem',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '1rem',
+        }}
+        onSubmit={handleSubmit}
+      >
+        {/* <label htmlFor='name'>Name</label> */}
+        {/* <input type='text' name='name' id='name' value={name} onChange={(event) => setName(event.target.value)} /> */}
+        <label htmlFor='name'>Name</label>
+        <input
+          type='text'
+          name='name'
+          id='name'
+          value={formState.name}
+          // onChange={(e) =>
+          //   setFormState((prev) => {
+          //     return { ...prev, name: e.target.value };
+          //   })
+          // }
+          onChange={handleChange}
+        />
+
+        <label htmlFor='email'>Email</label>
+        <input type='email' name='email' id='email' value={formState.email} onChange={handleChange} />
+
+        <label htmlFor='phone'>Phone</label>
+        <input type='tel' name='phone' id='phone' value={formState.phone} onChange={handleChange} />
+
+        <label htmlFor='message'>Message</label>
+        <textarea name='message' id='message' value={formState.message} onChange={handleChange}></textarea>
+        <button type='submit'>Submit</button>
+      </form>
+    </div>
+  );
 }
 
-export default App
+export default App;

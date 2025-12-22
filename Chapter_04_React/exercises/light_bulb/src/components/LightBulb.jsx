@@ -1,6 +1,7 @@
-const LightBulb = () => {
+const LightBulb = ({ isNight }) => {
   return (
-    <div className='container'>
+    // <div className={isNight ? 'container night' : 'container'}>
+    <div className={`container ${isNight ? 'night' : ''}`}>
       <div className='bulb-light'>
         <div id='light' />
         <div id='bulb'>
