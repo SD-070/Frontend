@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router';
+import type { Duck } from '../types';
 import { getDuckById } from '../data';
 const DuckPage = () => {
 	const { duckId } = useParams();
-	const [currDuck, setCurrDuck] = useState(null);
+	const [currDuck, setCurrDuck] = useState<Duck | null>(null);
 	const navigate = useNavigate();
 
 	const handleGoBack = () => {

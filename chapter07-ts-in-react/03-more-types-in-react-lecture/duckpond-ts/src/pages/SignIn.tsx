@@ -1,15 +1,19 @@
-import { useActionState, useState } from 'react';
+import { useActionState, useState, type ChangeEvent } from 'react';
 import { Link, Navigate } from 'react-router';
 import { toast } from 'react-toastify';
+import type { SignInInput, SignInActionResult } from '../types';
 import { validateSignIn } from '../utils';
 import { signIn } from '../data';
 import { useAuth } from '../context';
 
 const SignIn = () => {
 	const { signedIn, handleSignIn } = useAuth();
-	const signinAction = async (_, formData) => {
-		const email = formData.get('email');
-		const password = formData.get('password');
+	const signinAction = async (
+		_: SignInActionResult,
+		formData: FormData
+	): Promise<SignInActionResult> => {
+		const email = formData.get('email') as string;
+		const password = formData.get('password') as string;
 
 		const validationErrors = validateSignIn({ email, password });
 		if (Object.keys(validationErrors).length !== 0) {
@@ -35,12 +39,12 @@ const SignIn = () => {
 		error: null,
 		success: false
 	});
-	const [{ email, password }, setForm] = useState({
+	const [{ email, password }, setForm] = useState<SignInInput>({
 		email: '',
 		password: ''
 	});
 
-	const handleChange = (e) =>
+	const handleChange = (e: ChangeEvent<HTMLInputElement>) =>
 		setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
 
 	if (signedIn) return <Navigate to='/mypond' />;

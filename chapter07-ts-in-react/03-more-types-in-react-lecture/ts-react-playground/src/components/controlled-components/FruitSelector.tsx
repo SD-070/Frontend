@@ -60,7 +60,7 @@ type Fruit = keyof typeof fruitMap;
 const FruitSelector = () => {
 	const [fruit, setFruit] = useState<Fruit>('apple');
 
-	const handleChange: ChangeEventHandler<HTMLSelectElement> = e => {
+	const handleChange: ChangeEventHandler<HTMLSelectElement> = (e) => {
 		setFruit(e.target.value as Fruit);
 	};
 

@@ -1,4 +1,10 @@
-const DuckCard = ({ imgUrl, name, quote }) => {
+type DuckCardProps = {
+	imgUrl: string;
+	name: string;
+	quote: string;
+};
+
+const DuckCard = ({ imgUrl, name, quote }: DuckCardProps) => {
 	// console.log(duck, prop2);
 
 	return (

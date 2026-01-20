@@ -1,17 +1,9 @@
-type DuckInput = {
-	name: string;
-	imgUrl: string;
-	quote: string;
-};
-
-type DuckErrors = Partial<DuckInput>;
-
-type SignInInput = {
-	email: string;
-	password: string;
-};
-
-type SignInErrors = Partial<SignInInput>;
+import type {
+	DuckInput,
+	DuckErrors,
+	SignInInput,
+	SignInErrors
+} from '../types';
 
 const sleep = (ms: number) => new Promise((res) => setTimeout(res, ms));
 

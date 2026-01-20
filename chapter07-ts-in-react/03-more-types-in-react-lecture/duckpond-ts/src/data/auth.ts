@@ -1,3 +1,4 @@
+import type { User, SignInInput } from '../types';
 const BASE_URL = 'https://duckpond-89zn.onrender.com/auth';
 
 type SignInRes = {
@@ -5,23 +6,6 @@ type SignInRes = {
 	user: {
 		userId: string;
 	};
-};
-
-type SignInInput = {
-	email: string;
-	password: string;
-};
-
-type DBEntry = {
-	_id: string;
-	createdAt: string;
-	__v: number;
-};
-
-type User = DBEntry & {
-	firstName: string;
-	lastName: string;
-	email: string;
 };
 
 const signIn = async (formData: SignInInput): Promise<SignInRes> => {

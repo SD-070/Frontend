@@ -3,7 +3,7 @@ import { type ChangeEventHandler, useState } from 'react';
 const NameForm = () => {
 	const [name, setName] = useState('');
 
-	const handleChange: ChangeEventHandler<HTMLInputElement> = event => {
+	const handleChange: ChangeEventHandler<HTMLInputElement> = (event) => {
 		setName(event.target.value);
 	};
 

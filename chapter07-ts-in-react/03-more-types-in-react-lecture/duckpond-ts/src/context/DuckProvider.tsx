@@ -1,10 +1,10 @@
 import type { Duck, DuckContextType } from '../types';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, type ReactNode } from 'react';
 
 import { getAllDucks } from '../data';
 import { DuckContext } from '../context';
 
-const DuckProvider = ({ children }) => {
+const DuckProvider = ({ children }: { children: ReactNode }) => {
 	const [ducks, setDucks] = useState<Duck[]>([]);
 	useEffect(() => {
 		const abortController = new AbortController();

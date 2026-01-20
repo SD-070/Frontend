@@ -1,10 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, type ReactNode } from 'react';
+import { type AuthContextType, type User } from '../types';
 import { AuthContext } from '.';
 import { me } from '../data';
 
-const AuthProvider = ({ children }) => {
+const AuthProvider = ({ children }: { children: ReactNode }) => {
 	const [signedIn, setSignedIn] = useState(false);
-	const [user, setUser] = useState(null);
+	const [user, setUser] = useState<User | null>(null);
 	const [checkSession, setCheckSession] = useState(true);
 
 	useEffect(() => {
@@ -24,7 +25,7 @@ const AuthProvider = ({ children }) => {
 		if (checkSession) getUser();
 	}, [checkSession]);
 
-	const handleSignIn = (token) => {
+	const handleSignIn = (token: string) => {
 		localStorage.setItem('token', token);
 		setSignedIn(true);
 		setCheckSession(true);
@@ -35,7 +36,7 @@ const AuthProvider = ({ children }) => {
 		setSignedIn(false);
 		setUser(null);
 	};
-	const value = {
+	const value: AuthContextType = {
 		signedIn,
 		user,
 		handleSignIn,
